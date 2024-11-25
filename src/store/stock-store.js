@@ -31,7 +31,7 @@ const initialState = {
         ordered: true,
         group: true,
         po: false,
-        project_name: true,
+        project_name: false,
     },
 
 
@@ -198,7 +198,11 @@ export const stockSlice = createSlice({
         builder.addCase(StockService.filterStockData.fulfilled, (state, action)=>{
             state.filter_stock_data_pending = false;
             if(action.payload!==null){
+                console.log('enter if and action is ', action.payload);
                 state.filter_stock_data = action.payload;
+            }
+            else{
+                console.log('enter else and ', action.payload);
             }
         })
 

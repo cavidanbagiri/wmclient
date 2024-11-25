@@ -74,13 +74,13 @@ function FilterComponent() {
 
     const searchFunc = () => {
         let data = {
-            companyId: company.companyId,
-            orderedId: ordered.orderedId,
+            company_id: company.companyId,
+            ordered_id: ordered.orderedId,
             document: documentnum.toString(),
             material_name: material_name.toString(),
             createdAt: createdAt.toString(),
             po: po,
-            materialCodeId: material_code_id
+            material_code_id: material_code_id
         };
         if(user.projectId == 1){
 

@@ -12,7 +12,6 @@ class StockService {
             let data = {};
             await $api.get(`/stock/fetch`)
                 .then((response) => {
-                    console.log('coming stock is : ', response);
                     data = response.data;
                 })
                 .catch((err) => {
@@ -35,6 +34,7 @@ class StockService {
             }
             await $api.get(`/stock/filter/${query}`)
                 .then((response) => {
+                    console.log('print data is ', response.data);
                     data = response.data;
                 }).catch((err) => {
                     console.log('fetch warehouse data Error happen : ', err);

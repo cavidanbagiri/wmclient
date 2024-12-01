@@ -44,11 +44,11 @@ function OrderUpdateComponent() {
     }
 
     useEffect(() => {
-        if (po_data?.WarehouseModel?.warehouse_id) {
+        if (po_data?.warehouse_materials?.id) {
 
-            setMaterialName(po_data.WarehouseModel.material_name);
-            setStock(po_data.stock);
-            setUnit(po_data.WarehouseModel.unit);
+            setMaterialName(po_data.warehouse_materials.material_name);
+            setStock(po_data.leftover);
+            setUnit(po_data.warehouse_materials.unit);
             setSerialNumber(po_data.serial_number);
             setMaterialId(po_data.material_id);
         }

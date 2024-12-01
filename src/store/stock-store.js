@@ -267,6 +267,7 @@ export const stockSlice = createSlice({
                 state.order_update.order_update_color_cond = 'bg-green-500';
                 state.order_update.order_update_toggle = false
                 state.order_update.status = 201;
+                console.log('object ->>>>> : ', action.payload);
                 state.filter_stock_data.map((item)=>{
                     if(item.id === action.payload.data.id){
                         for(let[key, value] of Object.entries(item)){

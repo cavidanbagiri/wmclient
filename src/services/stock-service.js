@@ -12,7 +12,6 @@ class StockService {
             let data = {};
             await $api.get(`/stock/fetch`)
                 .then((response) => {
-                    console.log('coming ', response.data);
                     data = response.data;
                 })
                 .catch((err) => {
@@ -21,6 +20,7 @@ class StockService {
             return data;
         }
     )
+
 
     // Checked
     static filterStockData = createAsyncThunk(
@@ -44,6 +44,7 @@ class StockService {
     )
 
 
+    // Checked
     static getById = createAsyncThunk(
         '/stock/:id',
         async (id) => {
@@ -78,6 +79,7 @@ class StockService {
         }
     )
 
+
     // Checked
     static provideStock = createAsyncThunk(
         '/stock/provide',
@@ -100,7 +102,7 @@ class StockService {
         }
     )
 
-
+    // Checked
     static updateStock = createAsyncThunk(
         '/stock/update',
         async (updated_data) => {
@@ -140,6 +142,7 @@ class StockService {
         }
     )
 
+
     static setUnusableMaterial = createAsyncThunk(
         '/stock/setunusablematerial',
         async (sending_data) => {
@@ -158,6 +161,7 @@ class StockService {
             return data;
         }
     )
+
 
     static setServiceMaterial = createAsyncThunk(
         '/stock/setservicematerial',

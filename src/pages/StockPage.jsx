@@ -300,7 +300,7 @@ const StockPage = () => {
                                 else if (selected_items.length === 0) {
                                     showMessageBoxMessageHandle('return', USER_MESSAGES.ATLEAST_ONE_ROW_OPTION);
                                 }
-                                else if(user.is_admin || user.status_code === 1000 || user.status_code === 10000 || user.status_code === 10001){
+                                else if(user.is_admin || user.status_code === '1000' || user.status_code === '10000' || user.status_code === '10001'){
                                     dispatch(setOrderSelectionReturnToggleTrue());
                                     dispatch(StockService.getById(selected_items[0]));
                                 }
@@ -319,7 +319,7 @@ const StockPage = () => {
                                 else if (selected_items.length === 0) {
                                     showMessageBoxMessageHandle('update', USER_MESSAGES.ATLEAST_ONE_ROW_OPTION);
                                 }
-                                else if(user.is_admin || user.status_code === 1000 || user.status_code === 10000 || user.status_code === 10001){
+                                else if(user.is_admin || user.status_code === '1000' || user.status_code === '10000' || user.status_code === '10001'){
                                     dispatch(setOrderSelectionUpdateToggleTrue());
                                     dispatch(StockService.getById(selected_items[0]));
                                 }

@@ -12,6 +12,7 @@ class StockService {
             let data = {};
             await $api.get(`/stock/fetch`)
                 .then((response) => {
+                    console.log('coming ', response.data);
                     data = response.data;
                 })
                 .catch((err) => {
@@ -59,7 +60,7 @@ class StockService {
     )
 
 
-    // Working
+    // Checked
     static getDataByIds = createAsyncThunk(
         '/stock/datas',
         async (ids) => {
@@ -77,7 +78,7 @@ class StockService {
         }
     )
 
-
+    // Checked
     static provideStock = createAsyncThunk(
         '/stock/provide',
         async (provide_data) => {

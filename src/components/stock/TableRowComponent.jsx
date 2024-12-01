@@ -40,7 +40,7 @@ function TableRowComponent(props) {
             </td>
             {props.stock_column_filter.date &&
                 <td className={` text-center `} >
-                    {moment(props.item?.date).format("YYYY.MM.DD")}
+                    {moment(props.item?.created_at).format("YYYY.MM.DD")}
                 </td>
             }
             {props.stock_column_filter.company &&

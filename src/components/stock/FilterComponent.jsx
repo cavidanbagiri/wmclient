@@ -28,7 +28,7 @@ function FilterComponent() {
     const [documentnum, setDocumentNum] = useState('');
     const [material_name, setMaterialName] = useState('');
     const [po, setPO] = useState('');
-    const [createdAt, setSelectedDate] = useState('');
+    const [created_at, setSelectedDate] = useState('');
     const [company, setCompany] = useState({
         companyId: '',
         company_name: ''
@@ -78,7 +78,7 @@ function FilterComponent() {
             ordered_id: ordered.orderedId,
             document: documentnum.toString(),
             material_name: material_name.toString(),
-            createdAt: createdAt.toString(),
+            created_at: created_at.toString(),
             po: po,
             material_code_id: material_code_id
         };

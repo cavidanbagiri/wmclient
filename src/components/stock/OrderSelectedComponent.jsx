@@ -55,6 +55,7 @@ function OrderSelectedComponent(props) {
                     </div>
                     <div
                      className="flex items-center  ml-[100px]">
+
                         {/* Inform Row Field */}
                         <motion.div exit={{ opacity: 0, x: -200, }} initial={{ opacity: 0, x: 200, }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }}
                             onClick={() => {
@@ -94,7 +95,7 @@ function OrderSelectedComponent(props) {
                                 if (selected_items.length > 1) {
                                     props.showMessaggeBoxMessageHandle('update', USER_MESSAGES.TWO_OR_MORE_ROW_OPTION);
                                 }
-                                else if(user.is_admin || user.status_code === 1000 || user.status_code === 10000 || user.status_code === 10001){
+                                else if(user.is_admin || user.status_code === '1000' || user.status_code === '10000' || user.status_code === '10001'){
                                     dispatch(setOrderSelectionUpdateToggleTrue());
                                     dispatch(StockService.getById(selected_items[0]));
                                 }
@@ -126,7 +127,7 @@ function OrderSelectedComponent(props) {
                                 else if (selected_items.length > 1) {
                                     props.showMessaggeBoxMessageHandle('return', USER_MESSAGES.TWO_OR_MORE_ROW_OPTION);
                                 }
-                                else if(user.is_admin || user.status_code === 1000 || user.status_code === 10000 || user.status_code === 10001){
+                                else if(user.is_admin || user.status_code === '1000' || user.status_code === '10000' || user.status_code === '10001'){
                                     dispatch(setOrderSelectionReturnToggleTrue());
                                     dispatch(StockService.getById(selected_items[0]));
                                 }

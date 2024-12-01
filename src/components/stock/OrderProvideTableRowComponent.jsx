@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateRow, addRow, clearRow } from "../../store/stock-store";
 
+import {setOrderProvideMessageBoxTrue, setOrderProvideErrorMessage, setOrderProvideColorCond} from '../../store/stock-store'
+
 function OrderProvideTableHeaderComponent(props) {
 
     const dispatch = useDispatch();
@@ -12,16 +14,18 @@ function OrderProvideTableHeaderComponent(props) {
     const [row, setRow] = useState({
         id: props.item.id,
         ss: props.index,
-        amount: 0,
+        quantity: 0,
         serial_number: props.item.material_id,
         material_id: props.item.serial_number,
-        providerType: 'Consumption'
+        provider_type: 'Consumption',
+        stock_id: props.item.id
     });
 
     
     useEffect(() => {
         dispatch(addRow({row: row}))
-    }, [row.amount])
+    }, [row.quantity])
+
 
     return (
         <thead style={{ fontFamily: 'IBM Plex Sans' }} className="text-black bg-white border font-medium text-sm" >
@@ -33,26 +37,26 @@ function OrderProvideTableHeaderComponent(props) {
                 { /* Material name */
                     <th scope="col" className="px-6 py-1 text-center border  min-w-60 font-medium ">
                         <div className="">
-                            {props.item.WarehouseModel?.material_name}
+                            {props.item.warehouse_materials?.material_name}
                         </div>
                     </th>
                 }
                 { /* Type */
                     <th scope="col" className="px-6 py-1 text-center border font-medium ">
                         <div className="">
-                            {props.item.WarehouseModel?.type}
+                            {props.item.warehouse_materials?.material_type?.name}
                         </div>
                     </th>
                 }
 
                 { /* Stock */
                     <th scope="col" className="px-6 py-1 text-center border w-28 font-medium ">
-                        {props.item.stock}
+                        {props.item.leftover}
                     </th>
                 }
                 { /* Unit */
                     <th scope="col" className="px-6 py-1 text-center border w-28 font-medium ">
-                        {props.item.WarehouseModel?.unit}
+                        {props.item.warehouse_materials?.unit}
                     </th>
                 }
                 { /* Serial No */
@@ -71,18 +75,20 @@ function OrderProvideTableHeaderComponent(props) {
                     <th scope="col" className="p-1 text-center border font-medium min-w-32">
                         <input onChange={
                             (event) => {
-                                if (event.target.value > props.item.stock || event.target.value < 0) {
-                                    showMessageBoxMessageHandle('provide', 'Lutfen Gecerli Bir Miktar Giriniz');
+                                if (event.target.value > props.item?.leftover || event.target.value < 0) {
+                                    dispatch(setOrderProvideMessageBoxTrue(true))
+                                    dispatch(setOrderProvideErrorMessage({message: 'Gecerli Sayi Giriniz'}))
+                                    dispatch(setOrderProvideColorCond({color: 'text-red-500'}))
                                 }                                
                                 else {
                                     setRow((each) => ({
                                         ...each,
-                                        amount: event.target.value
+                                        quantity: event.target.value
                                     }))
-                                    dispatch(updateRow({ id: row.id, ss: row.ss, name: 'amount', value: event.target.value }));
+                                    dispatch(updateRow({ id: row.id, ss: row.ss, name: 'quantity', value: event.target.value }));
                                 }
                             }}
-                            type="number" value={row.amount} className="border bg-gray-100 p-2 w-full rounded-md outline-none" placeholder="Amount" />
+                            type="number" value={row.quantity} className="border bg-gray-100 p-2 w-full rounded-md outline-none" placeholder="Amount" />
                     </th>
                 }
 
@@ -118,11 +124,11 @@ function OrderProvideTableHeaderComponent(props) {
                         <select onChange={(event) => {
                             setRow((each) => ({
                                 ...each,
-                                providerType: event.target.value
+                                provider_type: event.target.value
                             }))
-                            dispatch(updateRow({ id: row.id, ss: row.ss, name: 'providerType', value: event.target.value }));
+                            dispatch(updateRow({ id: row.id, ss: row.ss, name: 'provider_type', value: event.target.value }));
                         }}
-                            type="text" value={row.providerType} className="border bg-gray-100 p-2 w-full rounded-md outline-none">
+                            type="text" value={row.provider_type} className="border bg-gray-100 p-2 w-full rounded-md outline-none">
                             <option value="Consumption">Consumption</option>
                             <option value="Debit">Debit</option>
                         </select>

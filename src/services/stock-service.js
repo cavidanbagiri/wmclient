@@ -34,7 +34,6 @@ class StockService {
             }
             await $api.get(`/stock/filter/${query}`)
                 .then((response) => {
-                    console.log('print data is ', response.data);
                     data = response.data;
                 }).catch((err) => {
                     console.log('fetch warehouse data Error happen : ', err);
@@ -43,7 +42,7 @@ class StockService {
         }
     )
 
-    // Checked
+
     static getById = createAsyncThunk(
         '/stock/:id',
         async (id) => {
@@ -59,13 +58,16 @@ class StockService {
         }
     )
 
-    // Checked
+
+    // Working
     static getDataByIds = createAsyncThunk(
         '/stock/datas',
         async (ids) => {
+            console.log('get by ids is work and ', ids);
             let data = {};
             await $api.post(`/stock/datas`, ids).
                 then((response) => {
+                    console.log('coming is ', response);
                     data = response.data;
                 })
                 .catch((err) => {
@@ -75,12 +77,12 @@ class StockService {
         }
     )
 
-    // Checked
+
     static provideStock = createAsyncThunk(
         '/stock/provide',
         async (provide_data) => {
             let data = {};
-            await $api.post(`/stock/provide`, provide_data).
+                await $api.post(`/stock/provide`, provide_data).
                 then((response) => {
                     data.status = response.status;
                     data.msg = response.data.msg;
@@ -88,9 +90,11 @@ class StockService {
                 })
                 .catch((err) => {
                     data.status = err.response.status;
-                    data.data = err.response.data;
-                    data.msg = err.response.data;
+                    data.data = err.response.data.msg;
+                    data.msg = err.response.data.msg;
                 })
+            
+           
             return data;
         }
     )
@@ -115,7 +119,7 @@ class StockService {
         }
     )
 
-    // Checked
+
     static returnToWarehouse = createAsyncThunk(
         '/stock/return',
         async (updated_data) => {

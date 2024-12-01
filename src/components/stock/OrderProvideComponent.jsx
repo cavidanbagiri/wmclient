@@ -72,7 +72,7 @@ function OrderInformationComponent() {
     sending_data.data = order_provide.order_provide_entering_data;
     sending_data.username = username;
     sending_data.card_number = card_number;
-    sending_data.groupId = group.group_id;
+    sending_data.group_id = group.group_id;
     dispatch(StockService.provideStock(sending_data));
 
   }
@@ -211,7 +211,8 @@ function OrderInformationComponent() {
 
             {
               order_provide.order_provide_data.map((item, index) => (
-                <OrderProvideTableRowComponent key={index + 1} index={index + 1} item={item} />
+                <OrderProvideTableRowComponent 
+                key={index + 1} index={index + 1} item={item} />
               ))
             }
           </table>

@@ -112,7 +112,7 @@ const StockPage = () => {
 
     const getTypeFilter = (type) => {
         let data = {
-            type: type,
+            material_type_id: type,
         }
         dispatch(StockService.filterStockData(data));
     }
@@ -208,6 +208,10 @@ const StockPage = () => {
             {
                 order_provide.order_provide_toggle && <OrderProvideComponent />
             }
+            {
+                order_provide.order_provide_message_box && <MessageBox message={order_provide.order_provide_error_message}
+                    color={order_provide.order_provide_color_cond} />
+            }
 
 
             {/* row Information */}
@@ -249,22 +253,22 @@ const StockPage = () => {
                     <div className='flex items-start w-full px-3 mt-4 '>
                         {
                             type_count.map((item, index) => (
-                                item.type === 'Consumable' ?
-                                    <MaterialTypeInform color={'border-red-500'} key={index + 1} item={item} title={'Sarf'}
+                                item.type === 'Sarf' ?
+                                    <MaterialTypeInform color={'border-red-500'} key={index + 1} item={item} title={item.type}
                                         getTypeFilter={getTypeFilter} />
-                                    : item.type === 'Project' ?
-                                        <MaterialTypeInform color={'border-green-500'} key={index + 1} item={item} title={'Proje'}
+                                    : item.type === 'Proje' ?
+                                        <MaterialTypeInform color={'border-green-500'} key={index + 1} item={item} title={item.type}
                                             getTypeFilter={getTypeFilter} />
-                                        : item.type === 'Fixture' ?
-                                            <MaterialTypeInform color={'border-blue-500'} key={index + 1} item={item} title={'Demirbas'}
+                                        : item.type === 'Demirbas' ?
+                                            <MaterialTypeInform color={'border-blue-500'} key={index + 1} item={item} title={item.type}
                                                 getTypeFilter={getTypeFilter} />
-                                            : item.type === 'Safety' ?
-                                                <MaterialTypeInform color={'border-pink-500'} key={index + 1} item={item} title={'Safety'}
+                                            : item.type === 'It Malzeme' ?
+                                                <MaterialTypeInform color={'border-pink-500'} key={index + 1} item={item} title={item.type}
                                                     getTypeFilter={getTypeFilter} />
-                                                : item.type === 'Administrative' ?
-                                                    <MaterialTypeInform color={'border-sky-500'} key={index + 1} item={item} title={'Idari Isler'}
+                                                : item.type === 'Idari Isler' ?
+                                                    <MaterialTypeInform color={'border-sky-500'} key={index + 1} item={item} title={item.type}
                                                         getTypeFilter={getTypeFilter} />
-                                                    : <MaterialTypeInform key={index + 1} color={'border-orange-500'} item={item} title={'El Aletleri'}
+                                                    : <MaterialTypeInform key={index + 1} color={'border-orange-500'} item={item} title={item.type}
                                                         getTypeFilter={getTypeFilter} />
                             ))
                         }

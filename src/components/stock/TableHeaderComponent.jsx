@@ -75,10 +75,10 @@ function CreateTableNavbarHeaderComponent() {
           </th>
         }
         { /* Qty */
-          stock_column_filter.qty &&
-          <th scope="col" className="px-6 py-1 text-center border w-28 font-medium ">
-            Sayi
-          </th>
+          // stock_column_filter.qty &&
+          // <th scope="col" className="px-6 py-1 text-center border w-28 font-medium ">
+          //   Sayi
+          // </th>
         }
         { /* Qty */
           stock_column_filter.stock &&

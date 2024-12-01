@@ -80,12 +80,12 @@ function TableRowComponent(props) {
                     {props.item?.warehouse_materials?.material_type?.name.charAt(0).toUpperCase() + props.item?.warehouse_materials?.material_type?.name.slice(1)}
                 </td>
             }
-            {
+            {/* {
                 props.stock_column_filter.qty &&
                 <td>
                     {props.item?.warehouse_materials?.quantity}
                 </td>
-            }
+            } */}
             {
                 props.stock_column_filter.stock &&
                 <td>

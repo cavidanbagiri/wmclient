@@ -67,7 +67,6 @@ function WarehousePage() {
     }
 
     const getTypeFilter = (type) => {
-        console.log('coming is ', type);
         let data = {
             material_type_id: type,
         }

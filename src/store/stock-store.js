@@ -139,6 +139,7 @@ export const stockSlice = createSlice({
         setOrderProvideMessageBoxTrue: (state) => {state.order_provide.order_provide_message_box = true;},
         setOrderProvideStatus: (state) => {state.order_provide.status = 0;},
         setOrderProvideErrorMessage: (state, action) => {state.order_provide.order_provide_error_message = action.payload.message;},
+        setOrderProvideColorCond: (state, action) => {state.order_provide.order_provide_color_cond = action.payload.color;},
 
         updateRow: (state, actions) => {
             let updated_row = state.order_provide.order_provide_entering_data.find((row) => row.id === actions.payload.id);
@@ -240,7 +241,7 @@ export const stockSlice = createSlice({
                 action.payload.data.map((item)=>{
                     state.filter_stock_data.map((data)=>{
                         if(data.id === item.id){
-                            data.stock = item.stock
+                            data.leftover = item.leftover
                         }
                     })
                 })
@@ -380,7 +381,7 @@ export const {
     selectRow, unselectRow, clearSelected,
     setOrderSelectionUpdateToggleTrue, setOrderSelectionUpdateToggleFalse, setOrderUpdateMessageBoxTrue,setOrderUpdateMessageBoxFalse, setOrderUpdateErrorMessage,
     setOrderSelectionReturnToggleTrue, setOrderSelectionReturnToggleFalse, setOrderReturnMessageBoxTrue,setOrderReturnMessageBoxFalse, setOrderReturnErrorMessage, setOrderReturnColorCond, setorderReturnStatus,
-    setOrderSelectionProvideToggleTrue, setOrderSelectionProvideToggleFalse, setOrderProvideMessageBoxTrue,setOrderProvideMessageBoxFalse, setOrderProvideErrorMessage, setOrderProvideStatus,
+    setOrderSelectionProvideToggleTrue, setOrderSelectionProvideToggleFalse, setOrderProvideMessageBoxTrue,setOrderProvideMessageBoxFalse, setOrderProvideErrorMessage, setOrderProvideStatus, setOrderProvideColorCond,
     setOrderSelectionMaterialUnusableToggleTrue, setOrderSelectionMaterialUnusableToggleFalse, setOrderMaterialUnusableMessageBoxTrue,setOrderMaterialUnusableMessageBoxFalse, setOrderMaterialUnusableErrorMessage, setOrderMaterialUnusableColorCond,
     setOrderSelectionMaterialServiceToggleTrue, setOrderSelectionMaterialServiceToggleFalse, setOrderMaterialServiceMessageBoxTrue,setOrderMaterialServiceMessageBoxFalse, setOrderMaterialServiceErrorMessage, setOrderMaterialServiceColorCond,
     updateRow, addRow, delRow, clearRow

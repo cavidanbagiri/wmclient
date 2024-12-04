@@ -16,7 +16,7 @@ import SpinnerComponent from '../common/SpinnerComponent.jsx';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-function OrderUpdateComponent() {
+function OrderReturnComponent() {
 
     const dispatch = useDispatch();
     const po_data = useSelector((state) => state.stockSlice.po_data);
@@ -35,16 +35,16 @@ function OrderUpdateComponent() {
 
     const postFunc = () => {
         let updated_data = {
-            id: po_data.id,
-            warehouse_id: po_data.WarehouseModel.warehouse_id,
+            stock_id: po_data.id,
+            warehouse_id: po_data.warehouse_materials.id,
             return_amount: return_amount,
         };
         let cond = true;
-        if (return_amount > po_data.stock) {
+        if (!Number(return_amount)) {
             cond = false;
             dispatch(setOrderReturnMessageBoxTrue());
             dispatch(setOrderReturnColorCond({ color: 'bg-red-500' }));
-            dispatch(setOrderReturnErrorMessage({ message: 'Girilen miktar stock miktarindan buyuk olmamali' }));
+            dispatch(setOrderReturnErrorMessage({ message: 'Girilen miktar sayi olmalidir' }));
             return
         }
         if (cond) {
@@ -62,19 +62,19 @@ function OrderUpdateComponent() {
     }, [order_return.status]);
 
     useEffect(() => {
-        if (po_data?.WarehouseModel?.warehouse_id) {
-
-            setMaterialName(po_data.WarehouseModel.material_name);
+        if (po_data?.warehouse_materials?.id) {
+            console.log('warehouse materials', po_data);
+            setMaterialName(po_data?.warehouse_materials?.material_name);
             //setMaterialType(po_data.type);
-            setQty(po_data.qty);
-            setStock(po_data.stock);
+            setQty(po_data.quantity);
+            setStock(po_data.leftover);
             // I Just define max stock, and need to show in ui side
-            setReturnAmount(po_data.stock);
+            setReturnAmount(po_data.leftover);
             //setPO(po_data.po);
-            setUnit(po_data.WarehouseModel.unit);
+            setUnit(po_data?.warehouse_materials?.unit);
             //setPrice(po_data.price);
-            setSerialNumber(po_data.serial_number);
-            setMaterialId(po_data.material_id);
+            setSerialNumber(po_data?.serial_number);
+            setMaterialId(po_data?.material_id);
         }
         else {
             console.log('else work')
@@ -209,4 +209,4 @@ function OrderUpdateComponent() {
     )
 }
 
-export default OrderUpdateComponent
+export default OrderReturnComponent

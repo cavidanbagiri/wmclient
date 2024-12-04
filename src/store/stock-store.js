@@ -298,8 +298,8 @@ export const stockSlice = createSlice({
                 if(action.payload.data.operation !== 'delete'){     
                     state.filter_stock_data.map((item)=>{
                         if(item.id === action.payload.data.id){
-                            item['qty'] = action.payload.data['qty'];
-                            item['stock'] = action.payload.data['stock'];
+                            item['quantity'] = action.payload.data['quantity'];
+                            item['leftover'] = action.payload.data['leftover'];
                         }
                     })
                 }
@@ -308,7 +308,7 @@ export const stockSlice = createSlice({
                     state.selected_items = [];
                 }                
             }
-            else if(action.payload.status === 500){
+            else if(action.payload.status === 400){
                 state.order_return.order_return_message_box = true;
                 state.order_return.order_return_error_message = action.payload.msg;
                 state.order_return.order_return_pending = false

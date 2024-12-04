@@ -102,7 +102,7 @@ class StockService {
         }
     )
 
-    
+
     // Checked
     static updateStock = createAsyncThunk(
         '/stock/update',
@@ -124,6 +124,7 @@ class StockService {
     )
 
 
+    // Checked
     static returnToWarehouse = createAsyncThunk(
         '/stock/return',
         async (updated_data) => {
@@ -136,8 +137,8 @@ class StockService {
                 })
                 .catch((err) => {
                     data.status = err.response.status;
-                    data.msg = err.response.data;
-                    data.data = err.response.data;
+                    data.msg = err.response.data.msg;
+                    data.data = err.response.data.msg;
                 })
             return data;
         }

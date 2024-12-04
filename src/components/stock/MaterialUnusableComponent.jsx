@@ -41,11 +41,14 @@ function MaterialUnusableComponent() {
             comment: comment,
         };
         let cond = true;
-        // if (sending_amount > po_data.stock) {
-        //     cond = false;
-        // }
+        if (!Number(sending_amount)){
+            cond = false;
+            dispatch(setOrderMaterialUnusableMessageBoxTrue());
+            dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
+            dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Enter a valid number' }));
+            return
+        }
         if (cond) {
-            console.log('sending data : ', sending_data);
             dispatch(StockService.setUnusableMaterial(sending_data));
         }
         else {
@@ -134,20 +137,19 @@ function MaterialUnusableComponent() {
                                     <input type="number" value={sending_amount}
                                         className={'border p-2'}
                                         onChange={(e) => {
-                                            setSendingAmount(e.target.value);
-                                            // if (e.target.value <= stock && e.target.value >= 0) {
-                                            //     setSendingAmount(e.target.value);
-                                            // }
-                                            // else if (e.target.value < 0) {
-                                            //     dispatch(setOrderMaterialUnusableMessageBoxTrue());
-                                            //     dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
-                                            //     dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
-                                            // }
-                                            // else {
-                                            //     dispatch(setOrderMaterialUnusableMessageBoxTrue());
-                                            //     dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
-                                            //     dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
-                                            // }
+                                            if (e.target.value <= stock && e.target.value >= 0) {
+                                                setSendingAmount(e.target.value);
+                                            }
+                                            else if (e.target.value < 0) {
+                                                dispatch(setOrderMaterialUnusableMessageBoxTrue());
+                                                dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
+                                                dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
+                                            }
+                                            else {
+                                                dispatch(setOrderMaterialUnusableMessageBoxTrue());
+                                                dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
+                                                dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
+                                            }
                                         }} />
                                 </div>
                             </div>

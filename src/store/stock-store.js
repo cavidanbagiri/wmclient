@@ -21,7 +21,7 @@ const initialState = {
         material_description: false,
         material_name: true,
         type: false,
-        qty: true,
+        qty: false,
         stock: true,
         serial_number: true,
         material_id: true,
@@ -188,7 +188,6 @@ export const stockSlice = createSlice({
             state.filter_stock_data_pending = false;
             if(action.payload!==null){
                 state.filter_stock_data = action.payload;
-                console.log('action payload ', state.filter_stock_data);
             }
         })
 
@@ -199,7 +198,6 @@ export const stockSlice = createSlice({
         builder.addCase(StockService.filterStockData.fulfilled, (state, action)=>{
             state.filter_stock_data_pending = false;
             if(action.payload!==null){
-                console.log('enter if and action is ', action.payload);
                 state.filter_stock_data = action.payload;
             }
             else{
@@ -267,7 +265,6 @@ export const stockSlice = createSlice({
                 state.order_update.order_update_color_cond = 'bg-green-500';
                 state.order_update.order_update_toggle = false
                 state.order_update.status = 201;
-                console.log('object ->>>>> : ', action.payload);
                 state.filter_stock_data.map((item)=>{
                     if(item.id === action.payload.data.id){
                         for(let[key, value] of Object.entries(item)){
@@ -333,11 +330,11 @@ export const stockSlice = createSlice({
                 state.material_unusable.color_cond = 'bg-green-500'
                 state.filter_stock_data.map((item)=>{
                     if(item.id === action.payload.data.id){
-                        item['stock'] = Number(action.payload.data['stock']);
+                        item['leftover'] = Number(action.payload.data['leftover']);
                     }
                 })
             }
-            else if(action.payload.status === 500){
+            else if(action.payload.status === 400){
                 state.material_unusable.message_box = true;
                 state.material_unusable.error_message = action.payload.msg;
                 state.material_unusable.pending = false
@@ -358,11 +355,11 @@ export const stockSlice = createSlice({
                 state.material_service.color_cond = 'bg-green-500'
                 state.filter_stock_data.map((item)=>{
                     if(item.id === action.payload.data.id){
-                        item['stock'] = Number(action.payload.data['stock']);
+                        item['leftover'] = Number(action.payload.data['leftover']);
                     }
                 })
             }
-            else if(action.payload.status === 500){
+            else if(action.payload.status === 400){
                 state.material_service.message_box = true;
                 state.material_service.error_message = action.payload.msg;
                 state.material_service.pending = false

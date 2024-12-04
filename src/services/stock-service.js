@@ -102,6 +102,7 @@ class StockService {
         }
     )
 
+    
     // Checked
     static updateStock = createAsyncThunk(
         '/stock/update',
@@ -143,6 +144,7 @@ class StockService {
     )
 
 
+    // Checked
     static setUnusableMaterial = createAsyncThunk(
         '/stock/setunusablematerial',
         async (sending_data) => {
@@ -155,14 +157,15 @@ class StockService {
                 })
                 .catch((err) => {
                     data.status = err.response.status;
-                    data.msg = err.response.data;
-                    data.data = err.response.data;
+                    data.msg = err.response.data.msg;
+                    data.data = err.response.data.msg;
                 })
             return data;
         }
     )
 
 
+    // Checked
     static setServiceMaterial = createAsyncThunk(
         '/stock/setservicematerial',
         async (sending_data) => {
@@ -175,8 +178,8 @@ class StockService {
                 })
                 .catch((err) => {
                     data.status = err.response.status;
-                    data.msg = err.response.data;
-                    data.data = err.response.data;
+                    data.msg = err.response.data.msg;
+                    data.data = err.response.data.msg;
                 })
             return data;
         }

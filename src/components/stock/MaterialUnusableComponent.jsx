@@ -36,15 +36,16 @@ function MaterialUnusableComponent() {
 
     const postFunc = () => {
         let sending_data = {
-            id: po_data.id,
-            amount: sending_amount,
-            comments: comment,
+            stock_id: po_data.id,
+            quantity: sending_amount,
+            comment: comment,
         };
         let cond = true;
         // if (sending_amount > po_data.stock) {
         //     cond = false;
         // }
         if (cond) {
+            console.log('sending data : ', sending_data);
             dispatch(StockService.setUnusableMaterial(sending_data));
         }
         else {
@@ -56,16 +57,16 @@ function MaterialUnusableComponent() {
     }
 
     useEffect(() => {
-        if (po_data?.WarehouseModel?.warehouse_id) {
+        if (po_data?.id) {
 
-            setMaterialName(po_data.WarehouseModel.material_name);
+            setMaterialName(po_data.warehouse_materials.material_name);
             //setMaterialType(po_data.type);
-            setQty(po_data.qty);
-            setStock(po_data.stock);
+            setQty(po_data.quantity);
+            setStock(po_data.leftover);
             // I Just define max stock, and need to show in ui side
             setSendingAmount(po_data.stock);
             //setPO(po_data.po);
-            setUnit(po_data.WarehouseModel.unit);
+            setUnit(po_data.warehouse_materials.unit);
             //setPrice(po_data.price);
             setSerialNumber(po_data.serial_number);
             setMaterialId(po_data.material_id);
@@ -80,7 +81,7 @@ function MaterialUnusableComponent() {
             <motion.div exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}
             className='flex justify-center items-center z-10 fixed top-0 right-0 w-full h-full bg-black bg-opacity-30'>
 
-                <div className='flex flex-col h-2/3 rounded-lg bg-white w-1/3 ' >
+                <div className='flex flex-col rounded-lg bg-white w-1/3 ' >
                     {/* Close and Title Component Section */}
                     <div className='flex justify-between p-5 text-end'>
                         <span style={{ fontWeight: 600, fontFamily: 'Open Sans' }} className='text-3xl'>
@@ -133,19 +134,20 @@ function MaterialUnusableComponent() {
                                     <input type="number" value={sending_amount}
                                         className={'border p-2'}
                                         onChange={(e) => {
-                                            if (e.target.value <= stock && e.target.value >= 0) {
-                                                setSendingAmount(e.target.value);
-                                            }
-                                            else if (e.target.value < 0) {
-                                                dispatch(setOrderMaterialUnusableMessageBoxTrue());
-                                                dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
-                                                dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
-                                            }
-                                            else {
-                                                dispatch(setOrderMaterialUnusableMessageBoxTrue());
-                                                dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
-                                                dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
-                                            }
+                                            setSendingAmount(e.target.value);
+                                            // if (e.target.value <= stock && e.target.value >= 0) {
+                                            //     setSendingAmount(e.target.value);
+                                            // }
+                                            // else if (e.target.value < 0) {
+                                            //     dispatch(setOrderMaterialUnusableMessageBoxTrue());
+                                            //     dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
+                                            //     dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
+                                            // }
+                                            // else {
+                                            //     dispatch(setOrderMaterialUnusableMessageBoxTrue());
+                                            //     dispatch(setOrderMaterialUnusableColorCond({ color: 'bg-red-500' }));
+                                            //     dispatch(setOrderMaterialUnusableErrorMessage({ message: 'Entering Amount greater than stock' }));
+                                            // }
                                         }} />
                                 </div>
                             </div>

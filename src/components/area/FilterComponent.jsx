@@ -36,12 +36,11 @@ function FilterComponent() {
         let data = {
             card_number: card_number.toString(),
             material_name: material_name.toString(),
-            createdAt: createdAt.toString(),
+            created_at: createdAt.toString(),
             po: po,
-            // projectId: user.projectId,
-            materialCodeId: material_code_id
+            material_code_id: material_code_id
         };
-        if(user.projectId == 1){
+        if(user.project_id == 1){
 
         }
         else{

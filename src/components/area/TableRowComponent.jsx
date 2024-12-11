@@ -39,53 +39,53 @@ function TableRowComponent(props) {
             </td>
             {props.area_column_filter.deliver_date &&
                 <td className={` text-center `} >
-                    {moment(props.item.deliver_date).format("YYYY.MM.DD")}
+                    {moment(props.item.created_at).format("YYYY.MM.DD")}
                 </td>
             }
             {
                 props.area_column_filter.material_code &&
                 <td className='text-center px-1'>
-                    {props.item.material_code}
+                    {props.item?.stock?.warehouse_materials?.material_code?.material_code}
                 </td>
             }
             {
                 props.area_column_filter.material_description &&
                 <td className='text-center px-1'>
-                    {props.item.material_description}
+                    {props.item?.stock?.warehouse_materials?.material_code?.material_description}
                 </td>
             }
             {
                 props.area_column_filter.material_name &&
                 <td className='text-start px-1 '>
                     <span className='max_two_line_table_row'>
-                        {props.item.material_name }
+                        {props.item?.stock?.warehouse_materials?.material_name }
                     </span>
                 </td>
             }
             {
                 props.area_column_filter.type &&
                 <td className='text-center px-1'>
-                    {props.item.type}
+                    {props.item?.stock?.warehouse_materials?.material_type?.name}
                 </td>
             }
             {
                 props.area_column_filter.qty &&
                 <td>
-                    {props.item.qty}
+                    {props.item.quantity}
                 </td>
             }
 
             {
                 props.area_column_filter.unit &&
                 <td className=''>
-                    {props.item.unit.charAt(0).toUpperCase() + props.item.unit.slice(1)}
+                    {props.item?.stock?.warehouse_materials?.unit.charAt(0).toUpperCase() + props.item?.stock?.warehouse_materials?.unit.slice(1)}
                 </td>
             }
 
             {
                 props.area_column_filter.serial_number &&
                 <td>
-                    {props.item.serial_number.trim().length === 0 ? '-' : props.item.serial_number.trim()}
+                    {props.item?.serial_number.trim().length === 0 ? '-' : props.item.serial_number.trim()}
                 </td>
             }
 
@@ -113,28 +113,28 @@ function TableRowComponent(props) {
             {
                 props.area_column_filter.group_name &&
                 <td className='pl-1 text-center'>
-                    {props.item.group_name.charAt(0).toUpperCase() + props.item.group_name.slice(1)}
+                    {props.item?.group.group_name?.charAt(0).toUpperCase() + props.item?.group.group_name?.slice(1)}
                 </td>
             }
 
             {
                 props.area_column_filter.provideType &&
                 <td className='pl-1 text-center'>
-                    {props.item.providerType.charAt(0).toUpperCase() + props.item.providerType.slice(1)}
+                    {props.item?.provide_type}
                 </td>
             }
 
             {
                 props.area_column_filter.po &&
                 <td className='pl-1 text-center'>
-                    {props.item.po}
+                    {props.item?.stock?.warehouse_materials?.po}
                 </td>
             }
 
-{
+            {
                 props.area_column_filter.project_name &&
                 <td className='pl-1 text-center'>
-                    {props.item.abbrevation_name}
+                    {props.item?.stock?.warehouse_materials?.project?.project_name}
                 </td>
             }
 

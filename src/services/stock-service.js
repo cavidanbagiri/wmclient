@@ -7,7 +7,7 @@ class StockService {
 
     // Checked
     static getcStocks = createAsyncThunk(
-        '/stock',
+        '/stock/fetch',
         async () => {
             let data = {};
             await $api.get(`/stock/fetch`)

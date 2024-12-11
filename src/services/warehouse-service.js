@@ -63,7 +63,6 @@ class WarehouseService {
             let data = {};
             await $api.post(`/warehouse/update`, updated_data).
             then((response)=>{
-                console.log('coming result for update is : ', response);
                 data.data = response.data.data;
                 data.status = 201;
                 data.msg = response.data.msg;

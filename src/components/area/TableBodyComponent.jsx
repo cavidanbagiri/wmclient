@@ -28,11 +28,17 @@ function TableBodyComponent() {
 
             {
                 filtered_area_data.map((item, index) => (
+
+                    
+                    item?.stock?.warehouse_materials  ? 
+                    
+
                     <TableRowComponent key={index + 1} index={index + 1} item={item}
                         user_status={user_status}
                         area_column_filter={area_column_filter}
                         handleChange={handleChange}
                     />
+                    : ''
                 ))
             }
 

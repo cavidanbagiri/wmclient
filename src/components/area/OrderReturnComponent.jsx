@@ -23,9 +23,9 @@ function OrderUpdateComponent() {
     const po_data_pending = useSelector((state) => state.areaSlice.po_data_pending);
     const order_return = useSelector((state) => state.areaSlice.order_return);
 
-    const [material_name, setMaterialName] = useState('');
-    const [qty, setQty] = useState(0);
-    const [unit, setUnit] = useState('');
+    // const [material_name, setMaterialName] = useState('');
+    // const [unit, setUnit] = useState('');
+    const [quantity, setQuantity] = useState(0);
     const [serial_number, setSerialNumber] = useState('');
     const [material_id, setMaterialId] = useState('');
     const [card_number, setCardNumber] = useState('');
@@ -66,10 +66,11 @@ function OrderUpdateComponent() {
 
     useEffect(() => {
         if (po_data?.data?.card_number) {
-            setMaterialName(po_data.data?.material_name);
-            setQty(po_data.data?.qty);
-            setReturnAmount(po_data.data?.qty);
-            setUnit(po_data.data?.unit);
+            console.log('this is work one tume');
+            // setMaterialName(po_data.data?.material_name);
+            setQuantity(po_data.data?.quantity);
+            // setReturnAmount(po_data.data?.quantity);
+            // setUnit(po_data.data?.unit);
             setSerialNumber(po_data.data?.serial_number);
             setMaterialId(po_data.data?.material_id);
             setCardNumber(po_data.data?.card_number);
@@ -118,24 +119,6 @@ function OrderUpdateComponent() {
                     {po_data && !po_data_pending &&
                         <div className='flex flex-col p-4 '>
 
-                            {/* Material Name Side */}
-                            <div className='flex items-center justify-between mt-3'>
-                                <span className='w-1/3'>Malzeme Ismi </span>
-                                <div className='relative w-full flex justify-end'>
-                                    <span className={''}>
-                                        {material_name}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Material Qty Side */}
-                            <div className='flex items-center justify-between mt-3'>
-                                <span className='w-1/3'>Sayisi</span>
-                                <div className='relative'>
-                                    {qty}
-                                </div>
-                            </div>
-
                             {/* Reurn Qty Side */}
                             <div className='flex items-center justify-between mt-3'>
                                 <span className='w-1/3'>Girilen Miktar</span>
@@ -149,7 +132,7 @@ function OrderUpdateComponent() {
                                                 setShowMessageBox(true);
                                                 setShowMessageBoxMessage(USER_MESSAGES.ENTERING_ZERO_VALUE_ERROR);
                                             }
-                                            else if (e.target.value > qty) {
+                                            else if (e.target.value > quantity) {
                                                 setShowMessageBox(true);
                                                 setShowMessageBoxMessage('Girilen Deyer Toplam Sayidan Fazla Olamaz');
                                             }
@@ -163,9 +146,9 @@ function OrderUpdateComponent() {
 
                             {/* Matterial Type Side */}
                             <div className='flex items-center justify-between mt-3'>
-                                <span className='w-1/3'>Birim </span>
+                                <span className='w-1/3'>Sayi </span>
                                 <div className='relative'>
-                                    {unit}
+                                    {quantity}
                                 </div>
                             </div>
 

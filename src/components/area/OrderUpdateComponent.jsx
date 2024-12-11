@@ -22,9 +22,9 @@ function OrderUpdateComponent() {
     const po_data_pending = useSelector((state) => state.areaSlice.po_data_pending);
     const order_update = useSelector((state) => state.areaSlice.order_update);
 
-    const [material_name, setMaterialName] = useState('');
-    const [qty, setQty] = useState(0);
-    const [unit, setUnit] = useState('');
+    // const [material_name, setMaterialName] = useState('');
+    // const [qty, setQty] = useState(0);
+    // const [unit, setUnit] = useState('');
     const [serial_number, setSerialNumber] = useState('');
     const [material_id, setMaterialId] = useState('');
     const [card_number, setCardNumber] = useState('');
@@ -45,10 +45,10 @@ function OrderUpdateComponent() {
         else {
             let updated_data = {
                 id: po_data?.data?.id,
-                material_name: material_name,
-                qty: qty,
-                serial_number: serial_number,
-                material_id: material_id,
+                // material_name: material_name,
+                // qty: qty,
+                // serial_number: serial_number,
+                // material_id: material_id,
                 card_number: card_number,
                 username: username,
             };
@@ -61,9 +61,9 @@ function OrderUpdateComponent() {
 
     useEffect(() => {
         if (po_data?.data?.card_number) {
-            setMaterialName(po_data.data?.material_name);
-            setQty(po_data.data?.qty);
-            setUnit(po_data.data?.unit);
+            // setMaterialName(po_data.data?.material_name);
+            // setQty(po_data.data?.qty);
+            // setUnit(po_data.data?.unit);
             setSerialNumber(po_data.data?.serial_number);
             setMaterialId(po_data.data?.material_id);
             setCardNumber(po_data.data?.card_number);
@@ -109,8 +109,7 @@ function OrderUpdateComponent() {
                     {po_data && !po_data_pending &&
                         <div className='flex flex-col p-4 '>
 
-                            {/* Material Name Side */}
-                            <div className='flex items-center justify-between mt-3'>
+                            {/* <div className='flex items-center justify-between mt-3'>
                                 <span className='w-1/3'>Malzeme Ismi </span>
                                 <div className='relative w-full flex justify-end'>
                                     <span className={''}>
@@ -119,7 +118,6 @@ function OrderUpdateComponent() {
                                 </div>
                             </div>
 
-                            {/* Material Qty Side */}
                             <div className='flex items-center justify-between mt-3'>
                                 <span className='w-1/3'>Sayisi</span>
                                 <div className='relative'>
@@ -127,13 +125,12 @@ function OrderUpdateComponent() {
                                 </div>
                             </div>
 
-                            {/* Matterial Type Side */}
                             <div className='flex items-center justify-between mt-3'>
                                 <span className='w-1/3'>Birim </span>
                                 <div className='relative'>
                                     {unit}
                                 </div>
-                            </div>
+                            </div> */}
 
                             {/* Serial Number Side */}
                             <div className='flex items-center justify-between mt-3'>

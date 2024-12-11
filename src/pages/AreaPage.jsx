@@ -62,11 +62,11 @@ function AreaPage() {
     }
 
     const clearFilter = () => {
-        dispatch(AreaService.fetchAreas(user.projectId));
+        dispatch(AreaService.fetchAreas());
     }
 
     useEffect(() => {
-        dispatch(AreaService.fetchAreas(user.projectId));
+        dispatch(AreaService.fetchAreas());
     }, []);
 
     

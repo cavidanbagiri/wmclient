@@ -57,7 +57,7 @@ const initialState = {
         qty: true,
         unit: true,
         type: false,
-        group_name: true,
+        group_name: false,
         serial_number: false,
         material_id: false,
         deliver_date: true,
@@ -173,7 +173,7 @@ export const areaSlice = createSlice({
                 state.order_return.order_return_toggle = false;
                 state.filtered_area_data.map((item)=>{
                     if(item.id === action.payload.data.id){
-                        item['qty'] = action.payload.data.qty
+                        item['quantity'] = action.payload.data.quantity
                     }
                 })
 

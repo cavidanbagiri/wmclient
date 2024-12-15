@@ -45,7 +45,7 @@ function ServiceUnusableReturnToStockComponent(props) {
                 <button onClick={() => {
                     const sending_data = {
                         id: props.item.id,
-                        amount: return_amount
+                        quantity: return_amount
                     }
     
                     if (props.header_for === "unusable") {

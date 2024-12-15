@@ -33,9 +33,9 @@ function ServiceUnusableTableHeaderComponent(props) {
             <th scope="col" className="px-6 py-3 text-center border">
                 STF No
             </th>
-            <th scope="col" className="px-6 py-3 text-center border">
+            {/* <th scope="col" className="px-6 py-3 text-center border">
                 Yaratildi
-            </th>
+            </th> */}
             <th scope="col" className="px-6 py-3 text-center border">
                 Tarih
             </th>
@@ -51,9 +51,9 @@ function ServiceUnusableTableHeaderComponent(props) {
                     Para Birimi
                 </th>
             }
-            <th scope="col" className="px-6 py-3 text-center border">
+            {/* <th scope="col" className="px-6 py-3 text-center border">
                 Proje
-            </th>
+            </th> */}
         </tr>
     </thead>
   )

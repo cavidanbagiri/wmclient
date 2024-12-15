@@ -21,7 +21,7 @@ function UnusableTable() {
   const unusable_to_stock = useSelector(state => state.areaSlice.unusable_to_stock);
 
   useEffect(() => {
-    dispatch(AreaService.getUnusableMaterials(user.projectId));
+    dispatch(AreaService.getUnusableMaterials());
   }, [dispatch])
 
   // useEffect(() => {

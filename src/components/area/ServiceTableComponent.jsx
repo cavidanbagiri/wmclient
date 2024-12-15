@@ -20,7 +20,7 @@ function ServiceTableComponent() {
     const service_to_stock = useSelector(state => state.areaSlice.service_to_stock);
 
     useEffect(() => {
-        dispatch(AreaService.getServiceMaterials(user.projectId));
+        dispatch(AreaService.getServiceMaterials());
     }, [dispatch])
 
     useEffect(() => {

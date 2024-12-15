@@ -218,11 +218,11 @@ export const areaSlice = createSlice({
                 state.unusable_to_stock.color_cond = 'bg-green-500'
                 state.unusable_materials.map((item)=>{
                     if(item.id === action.payload.data.id){
-                        item['amount'] = action.payload.data.amount
+                        item['quantity'] = action.payload.data.quantity
                     }
                 })
             }
-            else if(action.payload.status === 500){
+            else if(action.payload.status === 400){
                 state.unusable_to_stock.message_box = true;
                 state.unusable_to_stock.error_message = action.payload.msg;
                 state.unusable_to_stock.pending = false
@@ -243,11 +243,11 @@ export const areaSlice = createSlice({
                 state.service_to_stock.color_cond = 'bg-green-500'
                 state.service_materials.map((item)=>{
                     if(item.id === action.payload.data.id){
-                        item['amount'] = action.payload.data.amount
+                        item['quantity'] = action.payload.data.quantity
                     }
                 })
             }
-            else if(action.payload.status === 500){
+            else if(action.payload.status === 400){
                 state.service_to_stock.message_box = true;
                 state.service_to_stock.error_message = action.payload.msg;
                 state.service_to_stock.pending = false

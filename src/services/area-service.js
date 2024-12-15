@@ -103,12 +103,12 @@ class AreaService {
         }
     )
 
-    // Working
+    // Checked
     static getUnusableMaterials = createAsyncThunk(
-        '/area/fetchcunusablematerials/:projectId',
-        async (projectId) => {
+        '/areas/fetchunusablematerials',
+        async () => {
             let data = {};
-            await $api.get(`/area/fetchcunusablematerials/${projectId}`).
+            await $api.get('/areas/fetchunusablematerials').
                 then((response) => {
                     data.status = response.status;
                     data.msg = response.data.msg;
@@ -119,16 +119,16 @@ class AreaService {
                     data.msg = err.response.data;
                     data.data = err.response.data;
                 })
-            return data;
-        }
-    )
-
-    // Working
+                return data;
+            }
+        )
+        
+        // Checked
     static getServiceMaterials = createAsyncThunk(
-        '/area/fetchcservicematerials:/projectId',
-        async (projectId) => {
-            let data = {};
-            await $api.get(`/area/fetchcservicematerials/${projectId}`).
+            '/areas/fetchservicematerials',
+            async () => {
+                let data = {};
+                await $api.get('/areas/fetchservicematerials').
                 then((response) => {
                     data.status = response.status;
                     data.data = response.data;
@@ -141,11 +141,12 @@ class AreaService {
         }
     )
 
+    // Checked
     static unusableReturnToStock = createAsyncThunk(
-        '/area/unusabletostock',
+        '/areas/unusabletostock',
         async (sending_data) => {
             let data = {};
-            await $api.post(`/area/unusabletostock`, sending_data).
+            await $api.post(`/areas/unusabletostock`, sending_data).
                 then((response) => {
                     data.status = response.status;
                     data.msg = response.data.msg;
@@ -153,28 +154,29 @@ class AreaService {
                 })
                 .catch((err) => {
                     data.status = err.response.status;
-                    data.msg = err.response.data;
-                    data.data = err.response.data;
+                    data.msg = err.response.data.msg;
+                    data.data = err.response.data.msg;
                 })
                 console.log('unusable stock is : ', data);
             return data;
         }
     )
 
+    // Checked
     static serviceReturnToStock = createAsyncThunk(
-        '/area/servicetostock',
+        '/areas/servicetostock',
         async (sending_data) => {
             let data = {};
-            await $api.post(`/area/servicetostock`, sending_data).
+            await $api.post(`/areas/servicetostock`, sending_data).
                 then((response) => {
-                    data.status = response.status;
                     data.msg = response.data.msg;
                     data.data = response.data.data;
+                    data.status = response.status;
                 })
                 .catch((err) => {
                     data.status = err.response.status;
-                    data.msg = err.response.data;
-                    data.data = err.response.data;
+                    data.msg = err.response.data.msg;
+                    data.data = err.response.data.msg;
                 })
             return data;
         }

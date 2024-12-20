@@ -71,7 +71,7 @@ function GroupChartComponent() {
   }, [group_chart_analyz])
 
   return (
-    <div className='col-span-7 ml-8 h-[600px] p-2  bg-white border rounded-xl my-10'>
+    <div className='col-span-6 mr-4 h-[550px] ml-4 border rounded-xl bg-white p-2'>
 
       <BarChart chartData={chartData} />
 

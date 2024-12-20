@@ -94,6 +94,7 @@ class CommonService {
         }
     )
 
+    // Checked
     static getTypeCount = createAsyncThunk(
         '/warehouse/typecount',
         async(projectId) => {
@@ -108,7 +109,7 @@ class CommonService {
         }
     )
 
-    
+    // Checked
     static fetchMaterialTypes = createAsyncThunk(
         '/common/materialtypes/',
         async() => {
@@ -118,6 +119,41 @@ class CommonService {
                 data = response.data;
             }).catch((err) => {
                 data = null;
+            });
+            return data;
+        }
+    )
+
+
+    // Working
+    static getStockAnalyz = createAsyncThunk(
+        '/common/stockanalyz/',
+        async(projectId) => {
+            let data = {};
+            await $api.get(`/common/stockanalyz`)
+            .then((response) => {
+                console.log('coming response is : ', response);
+                data.status = response.status;
+                data.data = response.data;
+            }).catch((err) => {
+                data.status = err.response.status;
+                data.data = err.response.data;
+            });
+            return data;
+        }
+    )
+
+    static getGroupChartAnalyz = createAsyncThunk(
+        'groupchartanalyz/',
+        async(projectId) => {
+            let data = {};
+            await $api.get(`/groupchartanalyz/${projectId}`)
+            .then((response) => {
+                data.status = response.status;
+                data.data = response.data;
+            }).catch((err) => {
+                data.status = err.response.status;
+                data.data = err.response.data;
             });
             return data;
         }
@@ -140,44 +176,12 @@ class CommonService {
         }
     )
 
+    // Dont need
     static getTopCompanies = createAsyncThunk(
         'fetchtopcompanies/',
         async() => {
             let data = {};
             await $api.get('/topcompanies')
-            .then((response) => {
-                data.status = response.status;
-                data.data = response.data;
-            }).catch((err) => {
-                data.status = err.response.status;
-                data.data = err.response.data;
-            });
-            return data;
-        }
-    )
-
-
-    static getStockAnalyz = createAsyncThunk(
-        '/stockanalyz/',
-        async(projectId) => {
-            let data = {};
-            await $api.get(`/stockanalyz/${projectId}`)
-            .then((response) => {
-                data.status = response.status;
-                data.data = response.data;
-            }).catch((err) => {
-                data.status = err.response.status;
-                data.data = err.response.data;
-            });
-            return data;
-        }
-    )
-
-    static getGroupChartAnalyz = createAsyncThunk(
-        'groupchartanalyz/',
-        async(projectId) => {
-            let data = {};
-            await $api.get(`/groupchartanalyz/${projectId}`)
             .then((response) => {
                 data.status = response.status;
                 data.data = response.data;

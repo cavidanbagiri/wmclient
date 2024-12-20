@@ -36,17 +36,17 @@ const DashboardPage = () => {
       <MenuSideComponent />
 
 
-      <div className='grid grid-cols-11 gap-1 mt-10'>
+      <div className='grid grid-cols-12 gap-1 mt-10'>
 
-        <StockAnalyzComponent />
+        {/* <StockAnalyzComponent /> */}
 
-        <MaterialTypeComponent />
+        {/* <MaterialTypeComponent /> */}
 
-        <STFAnalyzComponent />
+        {/* <STFAnalyzComponent /> */}
 
-        <GroupChartComponent/>
+        {/* <GroupChartComponent/> */}
 
-        <TopCompaniesListComponent/>
+        {/* <TopCompaniesListComponent/> */}
 
       </div>
 
